@@ -27,4 +27,4 @@ VALUES ('Chris', 'Sannar', 1, null),
 
 SELECT * FROM department;
 SELECT * FROM role;
-SELECT * FROM Employee;
+SELECT * FROM employee;
