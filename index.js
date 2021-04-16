@@ -40,31 +40,57 @@ function init() {
     }]).then(function (val) {
         switch (val.choice) {
             case "View All Employees":
-                //make a function to see all emp//
+                viewAllEmployees();
                 break;
             case "View All Employees By Roles":
-                //make view all roles func//
+                viewAllRoles();
                 break;
             case "View all Emplyees By Deparments":
-                //same//
+                viewAllDeparments();
                 break;
 
             case "Add Employee?":
-                //same//
+                addEmployee();
                 break;
 
             case "Update Employee":
-                //same//
+                updateEmployee();
                 break;
 
             case "Add Role?":
-                //same//
+                addRole();
                 break;
 
             case "Add Department?":
-                //same//
+                addDepartment();
                 break;
         }
+    })
+}
+
+function viewAllEmployees() {
+    db.query("SELECT ",
+        function (err, res) {
+            if (err) throw err
+            console.log(res)
+            init()
+        })
+}
+
+function viewAllRoles() {
+    db.query("",
+    function (err, res) {
+        if (err) throw err
+        console.log(res)
+        init()
+    })
+}
+function viewAllDepartments() {
+    db.query("",
+    function (err, res) {
+        if (err) throw err
+        console.log(res)
+        init();
     })
 }
 
