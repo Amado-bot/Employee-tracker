@@ -69,7 +69,7 @@ function init() {
 }
 
 function viewAllEmployees() {
-    db.query("SELECT ",
+    db.query("",
         function (err, res) {
             if (err) throw err
             console.log(res)
@@ -79,19 +79,65 @@ function viewAllEmployees() {
 
 function viewAllRoles() {
     db.query("",
-    function (err, res) {
-        if (err) throw err
-        console.log(res)
-        init()
-    })
-}
-function viewAllDepartments() {
-    db.query("",
-    function (err, res) {
-        if (err) throw err
-        console.log(res)
-        init();
-    })
+        function (err, res) {
+            if (err) throw err
+            console.log(res)
+            init()
+        })
 }
 
+function viewAllDepartments() {
+    db.query("",
+        function (err, res) {
+            if (err) throw err
+            console.log(res)
+            init();
+        })
+}
+
+var roleArr = [];
+
+function selectRole() {
+    db.query("SELECT * FROM role", function (err, res) {
+        if (err) throw err
+        for (var i = 0; i < res.length; i++) {
+            roleArr.push(res[i].title);
+        }
+    })
+    return roleArr;
+}
+var managersArr = [];
+
+function selectManagers() {
+    db.query("SELECT first_name, last_name FROM employee WHERE manager_id IS NULL", function (err, res) {
+        if (err) throw err
+        for (var i = 0; i < res.length; i++) {
+            managersArr.push(res[i].first_name);
+        }
+    })
+    return managersArr;
+}
+
+function addEmployee() {
+    inquirer.prompt([{
+        name: 'firstName',
+        type: 'input',
+        message: 'Enter First Name'
+    }, {
+
+        name: 'lastName',
+        type: 'input',
+        message: 'Enter Last Name'
+    }, {
+        name: 'role',
+        type: 'list',
+        message: 'Choose A Roll',
+        choices: selectRole()
+    }, {
+        name: 'choice',
+        type: 'rawlist',
+        message: 'Choose A Manager',
+        choices: selectmanager()
+    }])
+}
 init();
