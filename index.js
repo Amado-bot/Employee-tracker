@@ -2,12 +2,19 @@
 const inquirer = require("inquirer");
 const mysql = require("mysql2");
 const cTable = require('console.table');
-const db = require('db');
+const db = mysql.createConnection({
+    host: "localhost",
+    port: 3001,
+    user: "root",
+    password: "password",
+    database: "employeeDB"
+  });
 
-//========== Connection ID ==========================//
+
+//========== db connect ==========================//
 db.connect(function (err) {
     if (err) throw err
-    console.log("Connected as Id" + connection.threadId)
+    console.log("Connected to DB")
     init();
 });
 
@@ -16,7 +23,7 @@ function init() {
     inquirer.prompt([{
         type: 'list',
         message: 'What would you like to do?',
-        name: 'START MENU',
+        name: 'choice',
         choices: [
             "View All Employees",
             "View All Employees By Roles",
@@ -131,7 +138,7 @@ function addEmployee() {
     ]).then(function (val) {
         var roleId = selectRole().indexOf(val.role) + 1
         var managerId = selectManager().indexOf(val.choice) + 1
-        connection.query("INSERT INTO employee SET ?", 
+        db.query("INSERT INTO employee SET ?", 
         {
             first_name: val.firstName,
             last_name: val.lastName,
@@ -147,7 +154,7 @@ function addEmployee() {
 }
 //updateEmployee//
 function updateEmployee() {
-    connection.query("SELECT employee.last_name, role.title FROM employee JOIN role ON employee.role_id = role.id;", function(err, res) {
+    db.query("SELECT employee.last_name, role.title FROM employee JOIN role ON employee.role_id = role.id;", function(err, res) {
     // console.log(res)
      if (err) throw err
      console.log(res)
@@ -172,7 +179,7 @@ function updateEmployee() {
           },
       ]).then(function(val) {
         var roleId = selectRole().indexOf(val.role) + 1
-        connection.query("UPDATE employee SET WHERE ?", 
+        db.query("UPDATE employee SET WHERE ?", 
         {
           last_name: val.lastName
            
@@ -193,7 +200,7 @@ function updateEmployee() {
   }
 //============= Add Employee Role ==========================//
 function addRole() { 
-  connection.query("SELECT role.title AS Title, role.salary AS Salary FROM role",   function(err, res) {
+  db.query("SELECT role.title AS Title, role.salary AS Salary FROM role",   function(err, res) {
     inquirer.prompt([
         {
           name: "Title",
@@ -207,7 +214,7 @@ function addRole() {
 
         } 
     ]).then(function(res) {
-        connection.query(
+        db.query(
             "INSERT INTO role SET ?",
             {
               title: res.Title,
@@ -233,7 +240,7 @@ function addDepartment() {
           message: "What Department would you like to add?"
         }
     ]).then(function(res) {
-        var query = connection.query(
+        var query = db.query(
             "INSERT INTO department SET ? ",
             {
               name: res.name
