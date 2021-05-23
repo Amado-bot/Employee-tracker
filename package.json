@@ -15,11 +15,5 @@
   "bugs": {
     "url": "https://github.com/Amado-bot/Employee-tracker/issues"
   },
-  "homepage": "https://github.com/Amado-bot/Employee-tracker#readme",
-  "dependencies": {
-    "console.table": "^0.10.0",
-    "inquirer": "^8.0.0",
-    "mysql2": "^2.2.5"
-  },
-  "devDependencies": {}
+  "homepage": "https://github.com/Amado-bot/Employee-tracker#readme"
 }

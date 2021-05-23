@@ -1,53 +1,28 @@
-DROP DATABASE IF EXISTS employeeDB;
-CREATE DATABASE employeeDB;
-USE employeeDB;
+  
+DROP DATABASE IF EXISTS employee_DB;
+CREATE database employee_DB;
+
+USE employee_DB;
 
 CREATE TABLE department (
-    id INT auto_increment PRIMARY KEY NOT NULL;
-    name VARCHAR(30) NOT NULL
+    id INT AUTO_INCREMENT NOT NULL,
+    department_name VARCHAR(30) NOT NULL,
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE role (
-    id INT auto_increment PRIMARY KEY NOT NULL,
+    id INT AUTO_INCREMENT NOT NULL,
     title VARCHAR(30) NOT NULL,
-    salary DECIMAL(9,2) NOT NULL,
-    department_id INT NOT NULL
+    salary DECIMAL(10, 0) NOT NULL,
+    department_id INT,
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE employee (
-    id INT auto_increment PRIMARY KEY NOT NULL,
-    first_name VARCHAR(30),
-    last_name VARCHAR(30),
+    id INT AUTO_INCREMENT NOT NULL,
+    first_name VARCHAR(30) NOT NULL,
+    last_name VARCHAR(30) NOT NULL,
     role_id INT,
     manager_id INT,
-    
+    PRIMARY KEY (id)
 );
-
---Department Seed
-INSERT INTO department(name)
-VALUES ('Sales'),
-('Engineering'),
-('Finance'),
-('Legal');
--- Employee Role Seed
-INSERT INTO role (title, salary, department_id)
-VALUES ('Sales Lead', 10000, 1),
-('Salesperson', 80000,1),
-('Lead Engineer', 150000, 2),
-('Software Engineer', 120000, 2),
-('Accountant', 125000, 3),
-('Legal Team Lead', 250000, 4),
-('Lawyer', 190000, 4);
---Employee Seed
-INSERT INTO employee (first_name, last_name, role_id, manager_id)
-VALUES ('Chris', 'Sannar', 1, null),
-('javid', 'Santos', 2, null),
-('Mason', 'Short', 3, null),
-('Michael', 'Breaker', 4, 1),
-('Laffy', 'Taffy', 5, 4),
-('Naruto', 'Uzumaki', 6, 1),
-('Hakuna','Matata', 2, 7);
-
-SELECT * FROM department;
-SELECT * FROM role;
-SELECT * FROM employee;

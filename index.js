@@ -1,14 +1,15 @@
 //Dependencies//
 const inquirer = require("inquirer")
 const mysql = require("mysql2")
-const cTable = require('console.table');
+const consoleTable = require('console.table');
+const util = require('util');
 
 const connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
     user: "root",
     password: "password",
-    database: "employeeDB"
+    database: "employee_DB"
 });
 
 
@@ -16,8 +17,10 @@ const connection = mysql.createConnection({
 connection.connect(function (err) {
     if (err) throw err
     console.log("Connected")
-    init();
+    initialAction();
 });
+
+connection.query = util.promisify(connection.query);
 
 console.table(
     "\n------------ EMPLOYEE TRACKER ------------\n"
