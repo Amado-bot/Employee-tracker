@@ -15,10 +15,10 @@ VALUES ('Sales Lead', 10000, 1),
 ('Lawyer', 190000, 4);
 --Employee Seed
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
-VALUES ('Chris', 'Sannar', 1, null),
-('javid', 'Santos', 2, null),
-('Mason', 'Short', 3, null),
-('Michael', 'Breaker', 4, 1),
-('Laffy', 'Taffy', 5, 4),
-('Naruto', 'Uzumaki', 6, 1),
-('Hakuna','Matata', 2, 7);
+VALUES ('Michael', 'Scott', 1, null),
+('Jim', 'Halpert', 2, 1),
+('Dwight', 'Schrute', 2, 1),
+('Pam', 'Beasley', 4, 1),
+('Kevin', 'Malone', 3, 1),
+('Toby', 'Flannagan', 5, 2),
+('Robert', 'bobert', 6, null);
