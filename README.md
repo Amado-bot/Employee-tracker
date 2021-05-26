@@ -1,10 +1,14 @@
 # Employee-Tracker   
 
-![badge](https://img.shields.io/badge/license--orange)<br />
-
 ## Description
 This app is the solution to managing a large business, with employee tracker you can manage all you employees, their roles, and their corresponding departments. This way you can focus on the task at hand
 
+## images
+![Image of employee view](assets\images\emp-view.PNG)
+![Image of menu view](assets\images\menu-view.PNG)
+## video link
+[click here to watch the walkthrough video!](https://drive.google.com/file/d/16dz4dIVRH4uCWgN1o-m1mmCdN7XbyoZQ/view)
+    
 ## Table of Contents
 
 * [Installation](#installation)
